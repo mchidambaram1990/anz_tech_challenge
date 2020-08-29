@@ -3,10 +3,12 @@ from flask import request, jsonify
 from git import Repo
 
 app = flask.Flask(__name__)
-version = "1.0"
+# version = "1.0"
 repo = Repo('.')
 assert not repo.bare
 commitsha = repo.head.object.hexsha
+# tag = reversed(repo.tags)
+version = repo.git.tag(l=True)
 
 gitData = [
     {
