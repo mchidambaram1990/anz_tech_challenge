@@ -8,8 +8,11 @@ repo = Repo('.')
 assert not repo.bare
 commitsha = repo.head.object.hexsha
 # tag = reversed(repo.tags)
-version = repo.git.tag(l=True)
-
+tags = sorted(repo.tags, key=lambda t: t.commit.committed_datetime)
+print(tags)
+version = latest_tag = tags[-1]
+# version = repo.git.tag(l=True)
+print(version)
 gitData = [
     {
         "version" : version,
