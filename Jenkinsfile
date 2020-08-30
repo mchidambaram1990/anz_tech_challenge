@@ -2,7 +2,7 @@ pipeline{
 
   agent any
   parameters {
-  	choice(name: 'action', choices: 'create\nrollback', description: 'Create/rollback of the deployment')
+  	choice(name: 'action', choices: 'create\nupdate\nrollback', description: 'Create/rollback of the deployment')
   }
   environment {
       registry = "mchidambaram1990/anz"
@@ -37,7 +37,7 @@ pipeline{
      stage("Create deployment")
      {
         when {
-              expression { params.action == 'Create' }
+              expression { params.action == 'create' }
         }
          steps
          {
@@ -51,6 +51,26 @@ pipeline{
                     {
                         sh 'kubectl create -f deployment.yaml'
                     }
+                 }
+         }
+     }
+     stage("Update deployment")
+     {
+        when {
+              expression { params.action == 'update' }
+        }
+         steps
+         {
+             withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+                   accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                   credentialsId: 'AWS_Credentials',
+                   secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+                 {
+                     withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
+                     variable: 'KUBECONFIG')])
+                     {
+                         sh 'kubectl apply -f deployment.yaml'
+                     }
                  }
          }
      }
