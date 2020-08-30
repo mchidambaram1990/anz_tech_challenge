@@ -3,6 +3,7 @@ pipeline{
   agent any
   parameters {
   	choice(name: 'action', choices: 'create\nupdate\nrollback', description: 'Create/rollback of the deployment')
+  	string(name: 'ImageName', description: "Name of the docker build")
   }
   environment {
       registry = "mchidambaram1990/anz"
@@ -21,7 +22,7 @@ pipeline{
 
         steps {
           script {
-             dockerImage = docker.build registry + ":latest"
+             dockerImage = docker.build registry + ":${params.ImageName}"
           }
         }
     }
