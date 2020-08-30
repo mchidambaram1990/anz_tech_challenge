@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('checkout') {
         steps {
-            git 'https://github.com/mchidambaram1990/awsautomationrepo.git'
+            git 'https://github.com/mchidambaram1990/testpy.git'
         }
     }
   }
