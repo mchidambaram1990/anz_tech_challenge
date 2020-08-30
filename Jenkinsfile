@@ -37,7 +37,7 @@ pipeline{
      stage("Create deployment")
      {
         when {
-              expression { params.action == 'rollback' }
+              expression { params.action == 'Create' }
         }
          steps
          {
