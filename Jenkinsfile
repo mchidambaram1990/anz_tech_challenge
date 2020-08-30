@@ -72,7 +72,7 @@ pipeline{
                      {
                         script
                         {
-                            template=`cat "deployment.yaml" | sed "s/{{IMAGE}}/$ImageName/g"`
+                            template=cat "deployment.yaml" | sed "s/{{IMAGE}}/$ImageName/g"
                             echo "$template" | kubectl apply -f -
                          }
                      }
