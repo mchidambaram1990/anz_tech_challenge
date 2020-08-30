@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web_app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web app
+          image: mchidambaram1990/anz:latest
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: web_service
+spec:
+  type: LoadBalancer
+  selector:
+    app: web
+  ports:
+    - name: http
+      protocol: TCP
+      # ELB's port
+      port: 5000
