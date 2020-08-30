@@ -3,7 +3,11 @@ pipeline {
 
 
   agent any
-
+  environment {
+      registry = "mchidambaram1990/anz"
+      registryCredential = ‘dockerhub’
+      dockerImage = ''
+  }
 
   stages {
     stage('checkout') {
@@ -16,15 +20,15 @@ pipeline {
 
         steps {
             sh 'docker rmi anz'
-            sh 'docker build -t anz .'
+            dockerImage = sh 'docker build -t anz .'
          	}
         }
-     stage("Docker CleanUP") {
-     	 when {
-     				    expression { params.action == 'create' }
-     			   }
+     stage("Docker push to hub") {
      	 steps {
-     	        dockerCleanup ( "${params.ImageName}", "${params.docker_repo}" )
+     	     script {
+                 docker.withRegistry( '', registryCredential ) {
+                   dockerImage.push()
+                 }
      		 }
      	 }
   }
