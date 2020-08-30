@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: anzweb
-          image: mchidambaram1990/anz
+          image: mchidambaram1990/anz:latest
 
 ---
 kind: Service
