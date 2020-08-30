@@ -30,6 +30,7 @@ pipeline{
                  }
      		 }
      	 }
+     }
      stage("Create deployment")
      {
          steps
@@ -48,5 +49,4 @@ pipeline{
          }
      }
   }
-}
 }
