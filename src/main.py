@@ -48,4 +48,6 @@ def git_version():
     return jsonify(api_json_object())
 
 
+# app.run(host='0.0.0.0')
 app.run()
+
