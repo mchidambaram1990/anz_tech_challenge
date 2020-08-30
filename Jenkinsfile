@@ -20,11 +20,10 @@ pipeline {
 
         steps {
           script {
-            docker rmi anz
-            dockerImage = docker build -t anz .
-            }
+            dockerImage = docker.build registry + ":$BUILD_NUMBER"
           }
         }
+    }
      stage("Docker push to hub") {
      	 steps {
      	     script {
