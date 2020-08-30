@@ -5,7 +5,7 @@ from git import Repo
 
 def get_git_data():
     repo = Repo('.')
-    # assert not repo.bare
+    assert not repo.bare
 
    # if repo.bare:
     #    raise git.exc.InvalidGitRepositoryError
@@ -48,5 +48,4 @@ def git_version():
 
 
 app.run(debug=True,host='0.0.0.0')
-#app.run()
 
