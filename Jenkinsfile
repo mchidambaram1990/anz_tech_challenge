@@ -19,9 +19,11 @@ pipeline {
     stage('docker build') {
 
         steps {
-            sh 'docker rmi anz'
-            dockerImage = sh 'docker build -t anz .'
-         	}
+          script {
+            docker rmi anz
+            dockerImage = docker build -t anz .
+            }
+          }
         }
      stage("Docker push to hub") {
      	 steps {
