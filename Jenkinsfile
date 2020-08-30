@@ -22,7 +22,7 @@ pipeline{
 
         steps {
           script {
-             dockerImage = docker.build registry + ":mei"
+             dockerImage = docker.build registry + ":latest"
           }
         }
     }
