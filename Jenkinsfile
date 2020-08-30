@@ -15,10 +15,8 @@ pipeline {
     stage('docker build') {
 
         steps {
-            sh 'docker stop anz'
-            sh 'docker rm -f anz'
-            sh 'docker image rm -f anz'
-         	sh 'docker build -t anz .'
+            sh 'docker rmi anz'
+            sh 'docker build -t anz .'
          	}
         }
      stage("Docker CleanUP") {
