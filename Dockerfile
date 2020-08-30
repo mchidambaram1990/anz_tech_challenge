@@ -1,6 +1,10 @@
-FROM python:3.6.1-alpine
+FROM ubuntu:16.04 
 COPY . ./code
 WORKDIR ./code
-RUN pip install -r requirements.txt
-EXPOSE 5000
-CMD ["flask", "run", "--host", "0.0.0.0"]
+RUN apt-get update -y && \
+    apt-get install -y python3-pip python-dev
+RUN apt-get install -y git
+RUN pip3 install -r requirements.txt
+RUN export GIT_PYTHON_REFRESH=quiet
+ENTRYPOINT [ "python3" ]
+CMD [ "src/main.py" ]

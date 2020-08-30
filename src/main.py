@@ -1,5 +1,4 @@
 import flask
-import git
 from flask import request, jsonify
 from git import Repo
 
@@ -8,8 +7,8 @@ def get_git_data():
     repo = Repo('.')
     # assert not repo.bare
 
-    if repo.bare:
-        raise git.exc.InvalidGitRepositoryError
+   # if repo.bare:
+    #    raise git.exc.InvalidGitRepositoryError
 
     # retrive the latest commit sha
     commitsha = repo.head.object.hexsha
@@ -48,6 +47,6 @@ def git_version():
     return jsonify(api_json_object())
 
 
-# app.run(host='0.0.0.0')
-app.run()
+app.run(debug=True,host='0.0.0.0')
+#app.run()
 
