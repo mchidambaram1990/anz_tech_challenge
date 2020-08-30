@@ -21,7 +21,6 @@ pipeline {
          	sh 'docker build -t anz .'
          	}
         }
-    }
      stage("Docker CleanUP") {
      	 when {
      				    expression { params.action == 'create' }
