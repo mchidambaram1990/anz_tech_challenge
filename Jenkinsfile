@@ -67,7 +67,7 @@ pipeline{
      	           {
      	               withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
      	               variable: 'KUBECONFIG')]) {
-     	               sh 'kubectl delete deployment/webapp svc/webservice
+     	               sh 'kubectl delete deployment/webapp svc/webservice'
 
 
      	               }
