@@ -70,7 +70,11 @@ pipeline{
                      withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
                      variable: 'KUBECONFIG')])
                      {
-                         sh 'kubectl apply -f deployment.yaml'
+                        script
+                        {
+                            template=`cat "deployment.yaml" | sed "s/{{IMAGE}}/$ImageName/g"`
+                            echo "$template" | kubectl apply -f -
+                         }
                      }
                  }
          }
