@@ -5,7 +5,7 @@ pipeline {
   agent any
   environment {
       registry = "mchidambaram1990/anz"
-      registryCredential = ‘dockerhub’
+      registryCredential = 'dockerhub'
       dockerImage = ''
   }
 
@@ -20,7 +20,7 @@ pipeline {
 
         steps {
           script {
-            dockerImage = docker.build registry + ":$BUILD_NUMBER"
+             dockerImage = docker.build registry + ":$BUILD_NUMBER"
           }
         }
     }
