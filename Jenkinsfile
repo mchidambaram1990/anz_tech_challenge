@@ -22,7 +22,7 @@ pipeline{
 
         steps {
           script {
-             dockerImage = docker.build registry + ":${params.ImageName}"
+             dockerImage = docker.build registry + ":latest"
           }
         }
     }
@@ -70,7 +70,7 @@ pipeline{
                      withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
                      variable: 'KUBECONFIG')])
                      {
-                        sh 'cat deployment.yaml | sed "s/{{IMAGE}}/$ImageName/g" | kubectl apply -f -'
+                        sh 'kubectl apply -f deployment.yaml'
                      }
                  }
          }
