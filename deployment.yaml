@@ -18,6 +18,7 @@ spec:
           imagePullPolicy: Always
 
 ---
+# Creating the service YAML file for the web
 kind: Service
 apiVersion: v1
 metadata:
@@ -29,5 +30,4 @@ spec:
   ports:
     - name: http
       protocol: TCP
-      # ELB's port
       port: 5000

@@ -12,13 +12,13 @@ pipeline{
   }
 
   stages {
-    stage('checkout') {
+    stage('GIT checkout') {
 
         steps {
             git 'https://github.com/mchidambaram1990/testpy.git'
         }
     }
-    stage('docker build') {
+    stage('Docker build') {
          when {
                expression { params.action == 'create' || params.action == 'update' }
          }
@@ -43,7 +43,7 @@ pipeline{
      		 }
      	 }
      }
-     stage("Create deployment")
+     stage("Create Deployment")
      {
         when {
               expression { params.action == 'create' }
@@ -63,7 +63,7 @@ pipeline{
                  }
          }
      }
-     stage("Update deployment")
+     stage("Update Deployment")
      {
         when {
               expression { params.action == 'update' }
@@ -83,7 +83,7 @@ pipeline{
                  }
          }
      }
-     stage("rollback deployment") {
+     stage("Rollback Deployment") {
             when {
             	  expression { params.action == 'rollback' }
             }
@@ -103,7 +103,7 @@ pipeline{
      	            }
      	        }
      	    }
-     stage("delete deployment") {
+     stage("Delete Deployment") {
                  when {
                  	  expression { params.action == 'delete' }
                  }
