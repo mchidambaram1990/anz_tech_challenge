@@ -47,8 +47,5 @@ def git_version():
     return jsonify(api_json_object())
 
 
-app.run(debug=True,host='0.0.0.0')
-
-#end
-
-#Programends
+if __name__ == '__main__':
+    app.run(debug=True,host='0.0.0.0')
