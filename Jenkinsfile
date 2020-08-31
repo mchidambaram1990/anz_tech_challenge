@@ -72,7 +72,7 @@ pipeline{
                      withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
                      variable: 'KUBECONFIG')])
                      {
-                        sh 'kubectl set image deployment/deployment.yaml container=mchidambaram1990/anz:${ImageName}'
+                        sh 'kubectl set image deployment/deployment anzweb=mchidambaram1990/anz:latest --record'
                         sh 'kubectl apply -f deployment.yaml'
                      }
                  }
