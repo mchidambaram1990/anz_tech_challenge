@@ -15,7 +15,7 @@ spec:
       containers:
         - name: anzweb
           image: mchidambaram1990/anz:latest
-          imagePullPolicy: "Always"
+          imagePullPolicy: Always
 
 ---
 kind: Service
