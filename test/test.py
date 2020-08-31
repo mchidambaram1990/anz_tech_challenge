@@ -25,40 +25,37 @@
 # # https://damyanon.net/post/flask-series-testing/
 #
 #
-# from app import app
-# import unittest
-#
-# class FlaskBookshelfTests(unittest.TestCase):
-#
-#     @classmethod
-#     def setUpClass(cls):
-#         pass
-#
-#     @classmethod
-#     def tearDownClass(cls):
-#         pass
-#
-#     def setUp(self):
-#         # creates a test client
-#         self.app = app.test_client()
-#         # propagate the exceptions to the test client
-#         self.app.testing = True
-#
-#     def tearDown(self):
-#         pass
-#
-#     def test_home_status_code(self):
-#         # sends HTTP GET request to the application
-#         # on the specified path
-#         result = self.app.get('/')
-#
-#         # assert the status code of the response
-#         self.assertEqual(result.status_code, 200)
-#
-#     def test_home_data(self):
-#         # sends HTTP GET request to the application
-#         # on the specified path
-#         result = self.app.get('/')
-#
-#         # assert the response data
-#         self.assertEqual(result.data, "Hello World!!!")
+import unittest
+import sys
+
+sys.path.append("C:\\natraj\App\\")
+from src import main
+
+
+class HomeVersionPage(unittest.TestCase):
+
+    def setUp(self):
+        main.app.config['TESTING'] = True
+        self.app = main.app.test_client()
+
+    def test_home_status_code(self):
+        response = self.app.get('/', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
+    def test_home_data(self):
+        result = self.app.get('/')
+        assert result.data == b'<h1> ANZ pre Interview Solution</h1> <p> <p><a href=../version>click here to navigate to /version page</a></p></p>'
+
+    def test_version_status_code(self):
+        response = self.app.get('/version', content_type='html/text')
+        self.assertEqual(response.status_code, 200)
+
+    def test_version_data(self):
+        result = self.app.get('/version')
+        assert result.data
+
+
+
+if __name__ == '__main__':
+    unittest.main()
+
