@@ -3,6 +3,8 @@ Created the Dockerfile with the source code, Ubuntu image and install the packag
 Created the Jenkinfile with Git Checkout, Docker build, Docker push to hub, Create, update, rollback and delete deployment.
 Created the deployment and service file. Exposed to port 5000 in the service file and given the image location for container. This is used for Deploying the image on the kubernetes cluster.
 
+PLEASE CREATE THE EKS Cluster from the other GitHub url : https://github.com/mchidambaram1990/eks-creation.git . This is done through Jenkins Pipeline. This cluster is created to deploy the application.
+
 Steps to do for C/CD Pipeline:
    
    1.Add the Dockerhub credentails in the Jenkins global credentails as dockerhub
