@@ -18,6 +18,11 @@ pipeline{
             git 'https://github.com/mchidambaram1990/testpy.git'
         }
     }
+    stage('Verify unit test case') {
+        steps {
+            sh 'python3 test/test.py -v'
+        }
+    }
     stage('Docker build') {
          when {
                expression { params.action == 'create' || params.action == 'update' }

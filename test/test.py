@@ -1,36 +1,11 @@
-# # # import json
-# # # import unittest
-# # # from src import main
-# # #
-# # #
-# # # class MyAppCase(unittest.TestCase):
-# # #     def setUp(self):
-# # #         main.app.config['TESTING'] = True
-# # #         self.app = main.app.test_client()
-# # #
-# # #     def test_dummy(self):
-# # #         response = self.app.get("/version")
-# # #         data = json.loads(response.get_data(as_text=True))
-# # #
-# # #         self.assertEqual(data['description'], "dummy-value")
-# # import json
-# #
-# #
-# # def test_index(app, client):
-# #     res = client.get('/version')
-# #     assert res.status_code == 200
-# #     expected = {'description': 'pre interview technical test'}
-# #     assert expected == json.loads(res.get_data(as_text=True))
-#
-# # https://damyanon.net/post/flask-series-testing/
-#
-#
 import unittest
 import sys
+import os
 
-sys.path.append("C:\\natraj\App\\")
+cwd = os.getcwd()
+sys.path.append(cwd)
+
 from src import main
-
 
 class HomeVersionPage(unittest.TestCase):
 
@@ -49,11 +24,6 @@ class HomeVersionPage(unittest.TestCase):
     def test_version_status_code(self):
         response = self.app.get('/version', content_type='html/text')
         self.assertEqual(response.status_code, 200)
-
-    # def test_version_data(self):
-    #     result = self.app.get('/version')
-    #     assert result.data
-
 
 if __name__ == '__main__':
     unittest.main()
