@@ -90,12 +90,32 @@ pipeline{
      	           {
      	               withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
      	               variable: 'KUBECONFIG')]) {
-     	               sh 'kubectl delete deployment/webapp svc/webservice'
+     	               sh 'kubectl rollout undo deployment/webapp'
 
 
      	               }
      	            }
      	        }
      	    }
+     stage("delete deployment") {
+                 when {
+                 	  expression { params.action == 'delete' }
+                 }
+
+         steps {
+          	 withCredentials([[$class: 'AmazonWebServicesCredentialsBinding',
+          	         accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+          	         credentialsId: 'AWS_Credentials',
+          	         secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+          	        {
+          	            withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
+          	            variable: 'KUBECONFIG')]) {
+          	            sh 'kubectl delete deployment/webapp svc/webservice'
+
+
+          	            }
+          	         }
+          	     }
+          	}
   }
 }
