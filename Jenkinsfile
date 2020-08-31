@@ -23,6 +23,7 @@ pipeline{
         steps {
           script {
              dockerImage = docker.build registry + ":latest"
+             dockerImageLatest = docker.build registry + ":${ImageName}"
           }
         }
     }
@@ -31,6 +32,7 @@ pipeline{
      	     script {
                  docker.withRegistry( '', registryCredential ) {
                    dockerImage.push()
+                   dockerImageLatest.push()
                  }
      		 }
      	 }
