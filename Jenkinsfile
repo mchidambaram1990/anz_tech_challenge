@@ -20,7 +20,7 @@ pipeline{
     }
     stage('docker build') {
          when {
-               expression { params.action == 'create' or params.action == 'update' }
+               expression { params.action == 'create' || params.action == 'update' }
          }
 
         steps {
@@ -32,7 +32,7 @@ pipeline{
     }
      stage("Docker push to hub") {
           when {
-                expression { params.action == 'create' or params.action == 'update' }
+                expression { params.action == 'create' || params.action == 'update' }
           }
      	 steps {
      	     script {
