@@ -2,8 +2,8 @@ pipeline{
 
   agent any
   parameters {
-  	choice(name: 'action', choices: 'create\nupdate\nrollback', description: 'Create/rollback of the deployment')
-  	string(name: 'ImageName', description: "Name of the docker build")
+  	choice(name: 'action', choices: 'create\nupdate\nrollback\ndelete', description: 'Type of the deployment')
+  	string(name: 'ImageName', description: "Name of the docker build version")
   }
   environment {
       registry = "mchidambaram1990/anz"
@@ -19,6 +19,9 @@ pipeline{
         }
     }
     stage('docker build') {
+         when {
+               expression { params.action == 'create' or params.action == 'update' }
+         }
 
         steps {
           script {
@@ -28,6 +31,9 @@ pipeline{
         }
     }
      stage("Docker push to hub") {
+          when {
+                expression { params.action == 'create' or params.action == 'update' }
+          }
      	 steps {
      	     script {
                  docker.withRegistry( '', registryCredential ) {
