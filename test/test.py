@@ -50,10 +50,9 @@ class HomeVersionPage(unittest.TestCase):
         response = self.app.get('/version', content_type='html/text')
         self.assertEqual(response.status_code, 200)
 
-    def test_version_data(self):
-        result = self.app.get('/version')
-        assert result.data
-
+    # def test_version_data(self):
+    #     result = self.app.get('/version')
+    #     assert result.data
 
 
 if __name__ == '__main__':
