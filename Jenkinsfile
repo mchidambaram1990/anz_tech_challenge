@@ -22,8 +22,8 @@ pipeline{
 
         steps {
           script {
-             dockerImage = docker.build registry + ":latest"
-             dockerImageLatest = docker.build registry + ":${ImageName}"
+             dockerImageLatest = docker.build registry + ":latest"
+             dockerImage = docker.build registry + ":${ImageName}"
           }
         }
     }
@@ -72,6 +72,7 @@ pipeline{
                      withCredentials([kubeconfigFile(credentialsId: 'kubernetes_config',
                      variable: 'KUBECONFIG')])
                      {
+                        sh 'kubectl set image deployment/deployment.yaml container=mchidambaram1990/anz:${ImageName}'
                         sh 'kubectl apply -f deployment.yaml'
                      }
                  }
