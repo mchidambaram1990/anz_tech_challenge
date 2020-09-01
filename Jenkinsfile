@@ -15,7 +15,7 @@ pipeline{
     stage('GIT checkout') {
 
         steps {
-            git 'https://github.com/mchidambaram1990/testpy.git'
+            git 'https://github.com/mchidambaram1990/anz_tech_challenge.git'
         }
     }
     stage('Verify unit test case') {
