@@ -1,8 +1,8 @@
 Created the Python Source code to get the latest application version & lastcommitsha.
 Created the unittest for the code and i have added them in the CI/CD pipeline.
-Created the Dockerfile with the source code, Ubuntu image and install the packages from requirements.txt file.This is used for building the docker image. Added them in CI/CD pipeline. Sending the docker image one with with the latest tag and other version tag.
+Created the Dockerfile with the source code, Ubuntu image and install the packages from requirements.txt file.This is used for building the docker image. Added them in CI/CD pipeline. Sending the docker image one with with the latest tag and other version tag. So the version is also controlled in dockerhub.
 Created the Jenkinfile with Git Checkout, Docker build, Docker push to hub, Create, update, rollback and delete deployment. Added them in the CI/CD pipeline.
-Created the deployment and service file. Exposed to port 5000 in the service file and given the image location for container. This is used for Deploying the image on the kubernetes cluster. Added kubernetes deployment in the CI/CD pipeline.
+Created the deployment and service file. Exposed to port 5000 in the service file and given the image location for container. This is used for Deploying the image on the kubernetes cluster. Added kubernetes deployment in the CI/CD pipeline. I have also used rollback option for Versioning the deployment in kubernetes cluster.
 
 PLEASE CREATE THE EKS Cluster from the other GitHub url : https://github.com/mchidambaram1990/eks-creation.git . This is done through Jenkins Pipeline. This cluster is created to deploy the application.
 
