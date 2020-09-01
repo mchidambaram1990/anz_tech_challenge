@@ -19,7 +19,7 @@ spec:
           imagePullPolicy: Always
 
 ---
-# Creating the service YAML file for the web
+# Creating the service YAML file for the webapp
 kind: Service
 apiVersion: v1
 metadata:
