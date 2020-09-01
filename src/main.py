@@ -7,8 +7,6 @@ def get_git_data():
     repo = Repo('.')
     assert not repo.bare
 
-   # if repo.bare:
-    #    raise git.exc.InvalidGitRepositoryError
 
     # retrive the latest commit sha
     commitsha = repo.head.object.hexsha
